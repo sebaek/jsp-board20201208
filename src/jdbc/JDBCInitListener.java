@@ -39,9 +39,9 @@ public class JDBCInitListener implements ServletContextListener {
     	String user = application.getInitParameter("jdbcUser");
     	String pw = application.getInitParameter("jdbcPassword");
     	
-    	System.out.println(url);
-    	System.out.println(user);
-    	System.out.println(pw);
+//    	System.out.println(url);
+//    	System.out.println(user);
+//    	System.out.println(pw);
     	
     	// 1. 클래스 로딩
     	try {
@@ -60,7 +60,9 @@ public class JDBCInitListener implements ServletContextListener {
     		e.printStackTrace();
     	}
     	
-    	
+    	ConnectionProvider.setUrl(url);
+    	ConnectionProvider.setUser(user);
+    	ConnectionProvider.setPassword(pw);
     	
     }
 	
