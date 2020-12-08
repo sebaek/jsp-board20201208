@@ -8,7 +8,6 @@ import mvc.command.CommandHandler;
 public class JoinHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
-		System.out.println("join handler");
 		return "joinForm";
 	}
 }

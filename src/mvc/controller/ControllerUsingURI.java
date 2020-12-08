@@ -61,8 +61,6 @@ public class ControllerUsingURI extends HttpServlet {
   				}
   			}
   			
-  			System.out.println(map.size());
-  			
   		} catch (Exception e) {
   			e.printStackTrace();
   		}
