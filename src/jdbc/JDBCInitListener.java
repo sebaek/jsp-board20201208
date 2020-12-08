@@ -64,6 +64,9 @@ public class JDBCInitListener implements ServletContextListener {
     	ConnectionProvider.setUser(user);
     	ConnectionProvider.setPassword(pw);
     	
+    	// context root 경로 
+    	String contextPath = application.getContextPath();
+    	application.setAttribute("root", contextPath);
     }
 	
 }
