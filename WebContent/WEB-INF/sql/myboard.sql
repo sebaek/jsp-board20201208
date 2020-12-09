@@ -5,3 +5,4 @@ CREATE TABLE member (
     password VARCHAR2(10) NOT NULL,
     regdate DATE NOT NULL
 );
+SELECT * FROM member;
