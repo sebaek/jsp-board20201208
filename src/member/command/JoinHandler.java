@@ -10,7 +10,7 @@ import mvc.command.CommandHandler;
 
 public class JoinHandler implements CommandHandler {
 	private static final String FORM_VIEW = "joinForm";
-	private JoinService joinService = new JoinService();
+//	private JoinService joinService = new JoinService();
 	
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -29,6 +29,7 @@ public class JoinHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) {
+		/*
 		JoinRequest joinReq = new JoinRequest();
 		joinReq.setId(req.getParameter("id"));
 		joinReq.setName(req.getParameter("name"));
@@ -51,7 +52,8 @@ public class JoinHandler implements CommandHandler {
 			errors.compute("duplicateId", true);
 			return FORM_VIEW;
 		}
-		
+		*/
+		return null;
 	}
 
 	

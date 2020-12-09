@@ -12,7 +12,28 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>회원가입</h1>
+<div class="container">
+  <h1>회원가입</h1>
+  <form action="join.do" method="post">
+    <p>
+      아이디 : <br />
+      <input type="text" name="id" value="${param.id }" />
+    </p>
+    <p>
+      이름 : <br />
+      <input type="text" name="name" value="${param.name }" />
+    </p>
+    <p>
+      암호 : <br />
+      <input type="password" name="password" />
+    </p>
+    <p>
+      확인 : <br />
+      <input type="password" name="confirmPassword" />
+    </p>
+    <input type="submit" value="가입" />
+  </form>
+</div>
 </body>
 </html>
 
