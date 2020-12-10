@@ -40,7 +40,7 @@ public class RemoveMemberHandler implements CommandHandler {
 		try {
 			removeMemberSvc.removeMember(user, password);
 			
-			// 세션을 invalide()
+			// 세션을 invalidate()
 			return "removeMemberSuccess";
 		} catch () { // catch문 2개 (각 문제마다)
 			// 문제가 생기면 (문제1. 사용자 없는 경우
