@@ -9,6 +9,9 @@ import jdbc.JdbcUtil;
 import member.model.Member;
 
 public class MemberDao {
+	public void delete(Connection conn, String id) {
+		// 삭제 쿼리 실행
+	}
 	
 	public void update(Connection conn, Member member) 
 			throws SQLException {
