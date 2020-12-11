@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import article.model.Article;
 import jdbc.JdbcUtil;
 
 public class ArticleDao {
-	public List<Article> select(Connection conn, int startRow, int size) 
+	public List<Article> select(Connection conn, int pageNum, int size) 
 		throws SQLException {
 		
 		/*
@@ -47,6 +48,25 @@ public class ArticleDao {
 				+ "  FROM article "
 				+ ") WHERE rn "
 				+ "    BETWEEN ? AND ?";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (pageNum-1) * size + 1);
+			pstmt.setInt(2, pageNum * size);
+			
+			rs = pstmt.executeQuery();
+			List<Article> result = new ArrayList<>();
+			while (rs.next()) {
+				result.add(rs);
+			}
+			
+			return result;
+		} finally {
+			JdbcUtil.close(rs, pstmt);
+		}
 	}
 	
 	public int selectCount(Connection conn) throws SQLException {
