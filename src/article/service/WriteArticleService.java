@@ -57,3 +57,9 @@ public class WriteArticleService {
 		return new Article(null, req.getWriter(), req.getTitle(), null, null, 0);
 	}
 }
+
+
+
+
+
+
