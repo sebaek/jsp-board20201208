@@ -6,7 +6,7 @@ CREATE TABLE member (
     regdate DATE NOT NULL
 );
 SELECT * FROM member;
-
+DROP table article;
 CREATE TABLE article (
     article_no NUMBER GENERATED AS IDENTITY,
     writer_id VARCHAR2(50) NOT NULL,
@@ -14,9 +14,10 @@ CREATE TABLE article (
     title VARCHAR2(255) NOT NULL,
     regdate DATE NOT NULL,
     moddate DATE NOT NULL,
-    read_cnd NUMBER,
+    read_cnt NUMBER,
     PRIMARY KEY (article_no)
 );
+SELECT * FROM article;
 
 CREATE TABLE article_content (
     article_no NUMBER PRIMARY KEY,
