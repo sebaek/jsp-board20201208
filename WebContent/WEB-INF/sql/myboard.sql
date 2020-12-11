@@ -18,6 +18,8 @@ CREATE TABLE article (
     PRIMARY KEY (article_no)
 );
 SELECT * FROM article;
+SELECT * FROM article_content;
+SELECT COUNT(*) FROM article;
 
 CREATE TABLE article_content (
     article_no NUMBER PRIMARY KEY,
@@ -42,6 +44,23 @@ CREATE TABLE article (
     read_cnd NUMBER,
     PRIMARY KEY (article_no)
 );
+
+-- page 처리
+SELECT count(*) FROM article;
+INSERT INTO article (writer_id, writer_name, title, regdate, moddate, read_cnt)
+VALUES ('a', 'a', 'a', sysdate, sysdate, 0);
+COMMIT;
+
+SELECT * 
+FROM article
+ORDER BY article_no DESC;
+
+
+
+
+
+
+
 
 
 

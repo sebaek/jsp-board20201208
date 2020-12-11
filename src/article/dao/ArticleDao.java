@@ -4,12 +4,71 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
+import java.util.List;
 
 import article.model.Article;
 import jdbc.JdbcUtil;
 
 public class ArticleDao {
+	public List<Article> select(Connection conn, int startRow, int size) 
+		throws SQLException {
+		
+		/*
+		String sql = "SELECT * "
+				+ "FROM article "
+				+ "ORDER BY articl_no DESC "
+				+ "LIMIT ?, ?"; // 시작 row_num(zerobase), 갯수
+		*/
+		String sql = "SELECT "
+				+ "rn, "
+				+ "article_no, "
+				+ "writer_id, "
+				+ "writer_name, "
+				+ "title, "
+				+ "regdate, "
+				+ "moddate, "
+				+ "read_cnt "
+				+ "FROM ("
+				+ "	SELECT article_no, "
+				+ " 		   writer_id, "
+				+ "        writer_name, "
+				+ "        title, "
+				+ "        regdate, "
+				+ "        moddate, "
+				+ "        read_cnt, "
+				+ "        ROW_NUMBER() "
+				+ "          OVER ("
+				+ "            ORDER BY "
+				+ "            article_no "
+				+ "            DESC)"
+				+ "        rn "
+				+ "  FROM article "
+				+ ") WHERE rn "
+				+ "    BETWEEN ? AND ?";
+	}
+	
+	public int selectCount(Connection conn) throws SQLException {
+		String sql = "SELECT COUNT(*) FROM article";
+		
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+			return 0;
+		} finally {
+			JdbcUtil.close(rs, stmt);
+		}
+	}
+	
+	
 	public Article insert(Connection conn, Article article) 
 			throws SQLException {
 		// 12c 이상
