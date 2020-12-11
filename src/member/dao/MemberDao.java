@@ -9,8 +9,16 @@ import jdbc.JdbcUtil;
 import member.model.Member;
 
 public class MemberDao {
-	public void delete(Connection conn, String id) {
+	public void delete(Connection conn, String id) throws SQLException {
 		// 삭제 쿼리 실행
+		String sql = "DELETE member "
+				+ "WHERE memberid=?";
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, id);
+			
+			pstmt.executeUpdate();
+		}
 	}
 	
 	public void update(Connection conn, Member member) 
