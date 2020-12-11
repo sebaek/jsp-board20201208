@@ -51,9 +51,14 @@ INSERT INTO article (writer_id, writer_name, title, regdate, moddate, read_cnt)
 VALUES ('a', 'a', 'a', sysdate, sysdate, 0);
 COMMIT;
 
-SELECT * 
+SELECT * FROM (
+SELECT article_no, title, ROW_NUMBER() OVER (ORDER BY article_no DESC) rn 
 FROM article
-ORDER BY article_no DESC;
+--ORDER BY article_no DESC
+)
+WHERE rn BETWEEN 6 AND 10;
+
+
 
 
 
