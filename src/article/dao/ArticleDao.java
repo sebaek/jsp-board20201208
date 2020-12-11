@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 import article.model.Article;
 import jdbc.JdbcUtil;
@@ -29,7 +30,8 @@ public class ArticleDao {
 		ResultSet rs = null;
 		
 		try {
-			pstmt = conn.prepareStatement(sql, new int[] {1});
+			pstmt = conn.prepareStatement(sql,
+							new String[] {"article_no", "regdate", "moddate"});
 			
 			pstmt.setString(1, article.getWriter().getId());
 			pstmt.setString(2, article.getWriter().getName());
@@ -40,14 +42,18 @@ public class ArticleDao {
 			if (cnt == 1) {
 				rs = pstmt.getGeneratedKeys();
 				int key = 0;
+				Date regDate = null;
+				Date modDate = null;
 				if (rs.next()) {
 					key = rs.getInt(1);
+					regDate = rs.getTimestamp(2);
+					modDate = rs.getTimestamp(3);
 				}
 				return new Article(key,
 						article.getWriter(),
 						article.getTitle(),
-						article.getRegDate(),
-						article.getModifiedDate(),
+						regDate,
+						modDate,
 						0);
 			} else {
 				return null;
