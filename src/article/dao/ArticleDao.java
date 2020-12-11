@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import article.model.Article;
+import article.model.Writer;
 import jdbc.JdbcUtil;
 
 public class ArticleDao {
@@ -60,13 +61,26 @@ public class ArticleDao {
 			rs = pstmt.executeQuery();
 			List<Article> result = new ArrayList<>();
 			while (rs.next()) {
-				result.add(rs);
+				result.add(convertArticle(rs));
 			}
 			
 			return result;
 		} finally {
 			JdbcUtil.close(rs, pstmt);
 		}
+	}
+	
+	private Article convertArticle(ResultSet rs) throws SQLException {
+		return new Article(rs.getInt("article_no"),
+					new Writer(
+							rs.getString("writer_id"),
+							rs.getString("writer_name")
+							),
+					rs.getString("title"),
+					rs.getTimestamp("regdate"),
+					rs.getTimestamp("moddate"),
+					rs.getInt("read_cnt")
+				);
 	}
 	
 	public int selectCount(Connection conn) throws SQLException {
