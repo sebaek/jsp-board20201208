@@ -14,6 +14,22 @@ import article.model.Writer;
 import jdbc.JdbcUtil;
 
 public class ArticleDao {
+	
+	public int update(Connection conn, int no, String title) throws SQLException {
+		String sql = "UPDATE article "
+				+ "SET title=?, moddate=SYSDATE "
+				+ "WHERE articl_no=?";
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, title);
+			pstmt.setInt(2, no);
+			
+			int cnt = pstmt.executeUpdate();
+			return cnt;
+		}
+	}
+	
+	
 	public Article selectById(Connection conn, int no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

@@ -9,6 +9,21 @@ import article.model.ArticleContent;
 import jdbc.JdbcUtil;
 
 public class ArticleContentDao {
+	public int update(Connection conn, int no, String content) throws SQLException {
+		String sql = "UPDATE article_content "
+				+ "SET content=? "
+				+ "WHERE article_no=?";
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, content);
+			pstmt.setInt(2, no);
+			
+			int cnt = pstmt.executeUpdate();
+			
+			return cnt;
+		}
+	}
+	
 	public ArticleContent selectById(Connection conn, int no) throws SQLException {
 		String sql = "SELECT * FROM article_content  "
 				+ "WHERE article_no=?";
