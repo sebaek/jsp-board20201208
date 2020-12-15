@@ -6,6 +6,7 @@
   <div>
     <form action="${root }/reply/add.do" method="post">
       <input type="number" value="${ articleNo}" name="no" hidden />
+      <input type="number" value="${ param.pageNo}" name="pageNo" hidden />
       <input type="text" name="body"/>
       <input type="submit" value="댓글등록" />
     </form>

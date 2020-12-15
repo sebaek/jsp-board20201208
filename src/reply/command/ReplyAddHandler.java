@@ -21,6 +21,7 @@ public class ReplyAddHandler implements CommandHandler {
 		String body = req.getParameter("body");
 		addService.add(userId, articleNo, body);
 		
+		
 		return "replyAddSuccess";
 	}
 
