@@ -57,6 +57,8 @@
     
     --%>
     <u:replyForm articleNo="${articleData.article.number }"/>
+    
+    <u:listReply /> 
   </div>
 </body>
 </html>

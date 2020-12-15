@@ -88,8 +88,12 @@ INSERT INTO reply (memberid, article_no, body, regdate)
 VALUES (' ', 0, ' ', SYSDATE);
 
 
+SELECT * FROM reply;
 
-
+SELECT replyid, memberid, article_no, body, regdate
+FROM reply
+WHERE article_no=103
+ORDER BY replyid DESC;
 
 
 
