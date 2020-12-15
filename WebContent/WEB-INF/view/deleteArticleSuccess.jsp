@@ -13,22 +13,8 @@
 </head>
 <body>
 <div class="container">
-  <h1>게시물 삭제</h1>
-  <form action="delete.do" method="post">
-    <input type="text" name="no" id="" value="${param.no }" hidden/>
-    <p>
-    암호 : <input type="password" name="password" /> <br />
-    <c:if test="${errors.invalidePassword }">암호가 일치하지 않습니다.</c:if>
-    </p>
-    <input type="submit" value="게시물 삭제" />
-  </form>
+ <h1>게시물이 삭제 되었습니다.</h1>
 </div>
 </body>
 </html>
-
-
-
-
-
-
 

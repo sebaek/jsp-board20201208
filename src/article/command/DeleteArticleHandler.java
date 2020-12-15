@@ -1,12 +1,16 @@
 package article.command;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import article.service.ArticleData;
+import article.service.DeleteArticleService;
+import article.service.PermissionDeniedException;
 import article.service.ReadArticleService;
 import auth.service.User;
 import mvc.command.CommandHandler;
@@ -15,6 +19,7 @@ public class DeleteArticleHandler implements CommandHandler {
 	private static final String FORM_VIEW = "deleteArticleForm";
 	
 	private ReadArticleService readService = new ReadArticleService();
+	private DeleteArticleService deleteArticleService = new DeleteArticleService();
 
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) throws Exception {
@@ -30,6 +35,8 @@ public class DeleteArticleHandler implements CommandHandler {
 	}
 
 	private String processSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		Map<String, Boolean> errors = new HashMap<>();
+		req.setAttribute("errors", errors);
 		// 현재 로그인 한 사용자
 		// 삭제하려는 게시물의 작성자
 		HttpSession session = req.getSession();
@@ -54,7 +61,10 @@ public class DeleteArticleHandler implements CommandHandler {
 		try {
 			deleteArticleService.delete(no, authUser, password);
 			
-		} catch (Exception e) {
+		} catch (PermissionDeniedException e) {
+			errors.put("invalidePassword", true);
+			return FORM_VIEW;
+		}	catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 		
