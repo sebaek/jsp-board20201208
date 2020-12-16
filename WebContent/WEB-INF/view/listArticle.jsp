@@ -17,20 +17,20 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <title>Insert title here</title>
 <style>
-.d-flex .num-col {
+.num-col {
   width: 10%;
 }
 
-.d-flex .title-col {
+.title-col {
   width: 60%;
 }
 
-.d-flex .writer-col {
-  width: 15%;
+.writer-col {
+  width: 20%;
 }
 
-.d-flex .read-col {
-  width: 15%;
+.read-col {
+  width: 10%;
 }
 </style>
 </head>
@@ -44,22 +44,31 @@
         <h1>게시글 목록</h1>
 
         <div class="list-container">
-          <div class="list-header d-flex">
-            <div class="list-header-cell num-col">번호</div>
-            <div class="list-header-cell title-col">제목</div>
-            <div class="list-header-cell read-col">조회수</div>
-            <div class="list-header-cell writer-col">작성자</div>
-          </div>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="num-col"><i class="fab fa-slack-hash"></i></th>
+                <th class="title-col">제목</th>
+                <th class="read-col"><i class="fas fa-eye"></i></th>
+                <th class="writer-col"><i class="fas fa-user-edit"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              <c:forEach var="article" items="${articlePage.content }">
+                <tr>
+                  <td class="text-right">${article.number }</td>
+                  <td>
+                  <a href="${root }/article/read.do?no=${article.number }&pageNo=${articlePage.currentPage}">
+                    <c:out value="${article.title }" />
+                  </a>
+                  </td>
+                  <td class="text-right">${article.readCount }</td>
+                  <td>${article.writer.name }</td>
+                </tr>
+              </c:forEach>
+            </tbody>
 
-          <c:forEach var="article" items="${articlePage.content }">
-            <div class="list-body d-flex">
-              <div class="list-body-cell num-col text-right">${article.number }</div>
-              <div class="list-body-cell title-col">${article.title }</div>
-              <div class="list-body-cell read-col text-right">${article.readCount }</div>
-              <div class="list-body-cell writer-col">${article.writer.name }</div>
-            </div>
-          </c:forEach>
-
+          </table>
 
         </div>
         <div class="mt-5 pagenation-container d-flex justify-content-center">
