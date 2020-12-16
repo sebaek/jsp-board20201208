@@ -25,8 +25,12 @@
       <div class="form-group">
         <label for="input1-id">아이디</label> <input
           type="text" name="id" class="form-control" id="input1-id"
-          > <small class="form-text text-muted">We'll never share your
-          email with anyone else.</small>
+          >
+          <c:if test="${errors.id }">
+            <small class="form-text text-muted">
+              ID를 입력하세요.
+            </small>
+          </c:if> 
       </div>
       <div class="form-group">
         <label for="input2-name">이름</label> <input
