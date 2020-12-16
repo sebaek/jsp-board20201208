@@ -53,31 +53,32 @@
 
           <c:forEach var="article" items="${articlePage.content }">
             <div class="list-body d-flex">
-              <div class="list-body-cell num-col">${article.number }</div>
+              <div class="list-body-cell num-col text-right">${article.number }</div>
               <div class="list-body-cell title-col">${article.title }</div>
-              <div class="list-body-cell read-col">${article.readCount }</div>
+              <div class="list-body-cell read-col text-right">${article.readCount }</div>
               <div class="list-body-cell writer-col">${article.writer.name }</div>
             </div>
           </c:forEach>
 
 
         </div>
-        
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <c:if test="${articlePage.startPage > 5}">
-              <li class="page-item"><a class="page-link" href="${root }/article/list.do?pageNo=${articlePage.startPage - 5 }">Previous</a></li>
-            </c:if>
-            
-            <c:forEach begin="${articlePage.startPage }" end="${articlePage.endPage }" var="pNo">
-              <li class="page-item"><a class="page-link" href="${root }/article/list.do?pageNo=${pNo}">${pNo }</a></li>
-            
-            </c:forEach>
-            <c:if test="${articlePage.endPage < articlePage.totalPages }">
-              <li class="page-item"><a class="page-link" href="${root }/article/list.do?pageNo=${articlePage.startPage + 5 }">Next</a></li>
-            </c:if>
-          </ul>
-        </nav>
+        <div class="mt-5 pagenation-container d-flex justify-content-center">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <c:if test="${articlePage.startPage > 5}">
+                <li class="page-item"><a class="page-link" href="${root }/article/list.do?pageNo=${articlePage.startPage - 5 }">Previous</a></li>
+              </c:if>
+              
+              <c:forEach begin="${articlePage.startPage }" end="${articlePage.endPage }" var="pNo">
+                <li class="page-item"><a class="page-link" href="${root }/article/list.do?pageNo=${pNo}">${pNo }</a></li>
+              
+              </c:forEach>
+              <c:if test="${articlePage.endPage < articlePage.totalPages }">
+                <li class="page-item"><a class="page-link" href="${root }/article/list.do?pageNo=${articlePage.startPage + 5 }">Next</a></li>
+              </c:if>
+            </ul>
+          </nav>
+        </div>
       </div>
     </div>
   </div>
