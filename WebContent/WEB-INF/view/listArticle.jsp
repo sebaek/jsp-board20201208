@@ -38,18 +38,21 @@
   <u:navbar></u:navbar>
 
   <div class="container">
-    <div class="row">
-      <div class="col-3"></div>
-      <div class="col-6">
-        <h1>게시글 목록</h1>
+    <div class="row justify-content-center">
+    	<div class="col-6">
+          <h1>게시글 목록</h1>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-8">
 
         <div class="list-container">
           <table class="table table-striped">
             <thead>
               <tr>
-                <th class="num-col"><i class="fab fa-slack-hash"></i></th>
+                <th class="num-col text-right"><i class="fas fa-hashtag"></i></th>
                 <th class="title-col">제목</th>
-                <th class="read-col"><i class="fas fa-eye"></i></th>
+                <th class="read-col text-right"><i class="fas fa-eye"></i></th>
                 <th class="writer-col"><i class="fas fa-user-edit"></i></th>
               </tr>
             </thead>
