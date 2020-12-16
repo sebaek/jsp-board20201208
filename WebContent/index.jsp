@@ -17,6 +17,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+  <u:navbar />
   <div class="container">
     <%--
   <c:if test="${not empty authUser }">
