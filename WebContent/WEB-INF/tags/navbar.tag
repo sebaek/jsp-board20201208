@@ -12,13 +12,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="${root }/index.jsp">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="${root }/index.jsp"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${root }/article/list.do">글 목록</a>
+        <a class="nav-link" href="${root }/article/list.do"><i class="fas fa-list"></i> 글 목록</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="${root }/article/write.do">글 쓰기</a>
+        <a class="nav-link" href="${root }/article/write.do"><i class="fas fa-pen-alt"></i> 글 쓰기</a>
       </li>
 
     </ul>
