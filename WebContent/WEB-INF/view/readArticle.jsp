@@ -37,7 +37,8 @@
           <div class="input-group">
             <input id="input1-title" type="text" value="${articleData.article.title }" class="form-control" readonly />
             <div class="input-group-append">
-              <span class="input-group-text">@ ${articleData.article.writer.name }</span>
+              <span class="input-group-text"> ${articleData.article.writer.name }</span>
+              <span class="input-group-text"><i class="fas fa-user-edit fa-fw"></i></span>
             </div>
           </div>
         </div>
@@ -56,49 +57,23 @@
   </div>
 </div>
 
+<hr />
 
   <div class="container">
-    <table border="1" width="100%">
-      <tr>
-        <td>번호</td>
-        <td>${articleData.article.number }</td>
-      </tr>
-      <tr>
-        <td>작성자</td>
-        <td>${articleData.article.writer.name }</td>
-      </tr>
-      <tr>
-        <td>제목</td>
-        <td><c:out value="${articleData.article.title }"></c:out></td>
-      </tr>
-      <tr>
-        <td>내용</td>
-        <td><u:pre value="${articleData.content.content }" /></td>
-      </tr>
-      <tr>
-        <td colspan="2"><c:set var="pageNo"
-            value="${empty param.pageNo ? '1' : param.pageNo }" /> <a
-          href="list.do?pageNo=${pageNo}">[목록]</a>
-          <c:if
-            test="${authUser.id == articleData.article.writer.id}">
-            <a href="modify.do?no=${articleData.article.number }">[게시글수정]</a>
-            <a href="delete.do?no=${articleData.article.number }">[게시글삭제]</a>
-          </c:if></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-      </tr>
-    </table>
-    
-    <%-- 
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
+
+        <%-- 
     로그인 한 경우만
     댓글 폼 출력
     
     --%>
-    <u:replyForm articleNo="${articleData.article.number }"/>
-    
-    <u:listReply /> 
+        <u:replyForm articleNo="${articleData.article.number }" />
+
+        <u:listReply />
+      </div>
+    </div>
   </div>
 </body>
 </html>

@@ -3,9 +3,13 @@
 
 <div>
   <c:forEach items="${replyList }" var="reply">
-  <div>
-    <input type="text" value="${reply.body }" readonly />
-    <span>${reply.memberId }</span>
+  <div class="input-group mb-3">
+    <input type="text" readonly class="form-control" value="${reply.body }" >
+    <div class="input-group-append">
+      <span class="input-group-text">${reply.memberId }</span>
+      <span class="input-group-text"><i class="far fa-fw fa-comment-dots"></i></span>
+    </div>
   </div>
+  
   </c:forEach>
 </div>
